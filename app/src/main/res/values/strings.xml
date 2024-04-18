@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Amazoinks</string>
+    <string name="amazoinks">AMAZOINKS!</string>
+    <string name="sign_in">Sign In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="amazoinks_login">Amazoinks Login</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
 </resources>
