@@ -65,4 +65,15 @@ public class User {
     public void setAdmin(boolean admin) {
         isAdmin = admin;
     }
+
+    //included for debugging
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", isAdmin=" + isAdmin +
+                '}';
+    }
 }

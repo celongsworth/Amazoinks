@@ -3,6 +3,8 @@ package com.example.amazoinks.database;
 import android.app.Application;
 import android.util.Log;
 
+import androidx.lifecycle.LiveData;
+
 import com.example.amazoinks.MainActivity;
 import com.example.amazoinks.database.entities.User;
 
@@ -48,5 +50,13 @@ public class AppRepository {
 
     public void invokeDB(){
         AppDatabase.databaseWriteExecutor.execute(userDAO::getAllUsers);
+    }
+
+    public LiveData<User> getUserByUserName(String username) {
+        return userDAO.getUserByUserName(username);
+    }
+
+    public LiveData<User> getUserByUserId(int userId) {
+        return userDAO.getUserByUserId(userId);
     }
 }
