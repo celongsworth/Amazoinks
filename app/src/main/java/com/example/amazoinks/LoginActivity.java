@@ -58,7 +58,6 @@ public class LoginActivity extends AppCompatActivity {
                     sharedPrefEditor.putInt(MainActivity.SHARED_PREFERENCE_USERID_KEY,user.getId());
                     sharedPrefEditor.apply();
                     startActivity(MainActivity.mainActivityIntentFactory(getApplicationContext(), user.getId()));
-                    //MainActivity.setLoggedInUserId(user.getId());
                     MainActivity.mainActivityIntentFactory(getApplicationContext(), user.getId());
 
                 } else {

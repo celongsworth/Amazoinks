@@ -8,6 +8,7 @@ import androidx.lifecycle.LiveData;
 import com.example.amazoinks.MainActivity;
 import com.example.amazoinks.database.entities.User;
 
+import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
@@ -54,6 +55,10 @@ public class AppRepository {
 
     public LiveData<User> getUserByUserName(String username) {
         return userDAO.getUserByUserName(username);
+    }
+
+    public LiveData<List<User>> getAllUsers(){
+        return userDAO.getAllUsers();
     }
 
     public LiveData<User> getUserByUserId(int userId) {

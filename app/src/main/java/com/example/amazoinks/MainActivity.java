@@ -153,6 +153,6 @@ public class MainActivity extends AppCompatActivity {
 
         getIntent().putExtra(MAIN_ACTIVITY_USER_ID, LOGGED_OUT);
         startActivity(InitialPageActivity.initialPageIntentFactory(getApplicationContext()));
-        //TODO: finish logout method
+
     }
 }
