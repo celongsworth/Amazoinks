@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -80,6 +81,9 @@ public class MainActivity extends AppCompatActivity {
             if(this.user != null){
                 if(this.user.isAdmin()){
                     Toast.makeText(this, "User is an admin", Toast.LENGTH_SHORT).show();
+                    binding.adminButton.setVisibility((View.VISIBLE));
+                } else {
+                    binding.adminButton.setVisibility(View.INVISIBLE);
                 }
                 invalidateOptionsMenu();
 

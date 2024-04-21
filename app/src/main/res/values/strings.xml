@@ -9,4 +9,7 @@
     <string name="login">Login</string>
     <string name="create_account">Create Account</string>
     <string name="amazoinks_sign_up">Amazoinks Sign Up</string>
+    <string name="view_cart">View Cart</string>
+    <string name="shop_now">Shop Now!</string>
+    <string name="admin_things">Admin things</string>
 </resources>
