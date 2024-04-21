@@ -46,15 +46,12 @@ public class MainActivity extends AppCompatActivity {
 
         loginUser();
 
-        if(loggedInUserId == -1){
+        if(loggedInUserId == LOGGED_OUT){
             Intent intent = InitialPageActivity.initialPageIntentFactory(getApplicationContext());
             startActivity(intent);
         }
-        /*
-        if(loggedInUserId ==  -1){
-            Intent intent = LoginActivity.loginIntentFactory(getApplicationContext());
-            startActivity(intent);
-        } */
+
+
 
     }
 
@@ -73,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         //loggedInUserId = getIntent().getIntExtra(MAIN_ACTIVITY_USER_ID, LOGGED_OUT);
 
         if(loggedInUserId == LOGGED_OUT){
-            Toast.makeText(this, "loggedInUserId: " + loggedInUserId, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "loggedInUserId: " + loggedInUserId, Toast.LENGTH_SHORT).show();
             return;
         }
         LiveData<User> userObserver = repository.getUserByUserId(loggedInUserId);
@@ -81,7 +78,11 @@ public class MainActivity extends AppCompatActivity {
             this.user = user;
             //Toast.makeText(this, user.toString(), Toast.LENGTH_SHORT).show();
             if(this.user != null){
+                if(this.user.isAdmin()){
+                    Toast.makeText(this, "User is an admin", Toast.LENGTH_SHORT).show();
+                }
                 invalidateOptionsMenu();
+
             } else {
                 logout();
             }
