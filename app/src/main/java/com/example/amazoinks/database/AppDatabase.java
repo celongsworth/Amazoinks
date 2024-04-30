@@ -23,6 +23,7 @@ import java.util.concurrent.Executors;
 @Database(entities = {User.class}, version = 1, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
     public static final String USER_TABLE = "usertable";
+    public static final String PRODUCTS_TABLE = "productstable";
     private static final String DATABASE_NAME = "AppDatabase";
     private static volatile AppDatabase INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;

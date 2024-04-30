@@ -12,4 +12,8 @@
     <string name="view_cart">View Cart</string>
     <string name="shop_now">Shop Now!</string>
     <string name="admin_things">Admin things</string>
+    <string name="admin_menu">Admin Menu</string>
+    <string name="inventory_menu">Inventory Menu</string>
+    <string name="orders_menu">Orders Menu</string>
+    <string name="users_menu">Users Menu</string>
 </resources>

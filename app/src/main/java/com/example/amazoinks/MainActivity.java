@@ -9,7 +9,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -27,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
     private static final String MAIN_ACTIVITY_USER_ID = "com.example.amazoinks.MAIN_ACTIVITY_USER_ID";
     public static final String SHARED_PREFERENCE_USERID_KEY = "com.example.amazoinks.SHARED_PREFERENCE_USERID_KEY";
     private static final String SHARED_PREFERENCE_USERID_VALUE = "com.example.amazoinks.SHARED_PREFERENCE_USERID_VALUE";
-
     private static final int LOGGED_OUT = -1;
 
     private ActivityMainBinding binding;
@@ -52,8 +50,13 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         }
 
-
-
+        binding.adminMenuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = AdminActivity.adminIntentFactory(getApplicationContext());
+                startActivity(intent);
+            }
+        });
     }
 
     private void loginUser() {
@@ -71,22 +74,18 @@ public class MainActivity extends AppCompatActivity {
         //loggedInUserId = getIntent().getIntExtra(MAIN_ACTIVITY_USER_ID, LOGGED_OUT);
 
         if(loggedInUserId == LOGGED_OUT){
-            //Toast.makeText(this, "loggedInUserId: " + loggedInUserId, Toast.LENGTH_SHORT).show();
             return;
         }
         LiveData<User> userObserver = repository.getUserByUserId(loggedInUserId);
         userObserver.observe(this, user -> {
             this.user = user;
-            //Toast.makeText(this, user.toString(), Toast.LENGTH_SHORT).show();
             if(this.user != null){
                 if(this.user.isAdmin()){
-                    Toast.makeText(this, "User is an admin", Toast.LENGTH_SHORT).show();
-                    binding.adminButton.setVisibility((View.VISIBLE));
+                    binding.adminMenuButton.setVisibility(View.VISIBLE);
                 } else {
-                    binding.adminButton.setVisibility(View.INVISIBLE);
+                    binding.adminMenuButton.setVisibility(View.INVISIBLE);
                 }
                 invalidateOptionsMenu();
-
             } else {
                 logout();
             }
