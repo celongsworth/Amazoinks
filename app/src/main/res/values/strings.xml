@@ -16,4 +16,5 @@
     <string name="inventory_menu">Inventory Menu</string>
     <string name="orders_menu">Orders Menu</string>
     <string name="users_menu">Users Menu</string>
+    <string name="amazoinks_admin_menu">Amazoinks Admin Menu</string>
 </resources>

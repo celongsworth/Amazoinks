@@ -69,10 +69,10 @@ public class User {
     //included for debugging
     @Override
     public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
+        return "{" +
+                "user id=" + id +
+                ", user name='" + username + '\'' +
                 ", isAdmin=" + isAdmin +
-                '}';
+                '}' + "\n";
     }
 }
