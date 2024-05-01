@@ -12,4 +12,5 @@
     <string name="view_cart">View Cart</string>
     <string name="shop_now">Shop Now!</string>
     <string name="admin_things">Admin things</string>
+    <string name="add_item">Add Item</string>
 </resources>

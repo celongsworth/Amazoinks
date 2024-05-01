@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -16,8 +17,10 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 
+import com.example.amazoinks.database.AppDatabase;
 import com.example.amazoinks.database.AppRepository;
 import com.example.amazoinks.database.entities.User;
+import com.example.amazoinks.databinding.ActivityLoginBinding;
 import com.example.amazoinks.databinding.ActivityMainBinding;
 
 
@@ -51,6 +54,15 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = InitialPageActivity.initialPageIntentFactory(getApplicationContext());
             startActivity(intent);
         }
+        binding.shopNowButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = ItemBrowsingActivity.itemBrowsingIntentFactory(getApplicationContext());
+                Bundle bundle = new Bundle();
+                bundle.putInt("USER_ID", user.getId());
+                startActivity(intent, bundle);
+            }
+        });
 
 
 
@@ -96,6 +108,7 @@ public class MainActivity extends AppCompatActivity {
     static Intent mainActivityIntentFactory(Context context, int userId){
         Intent intent = new Intent(context, MainActivity.class);
         intent.putExtra(MAIN_ACTIVITY_USER_ID, userId);
+//        context.deleteDatabase(AppDatabase.DATABASE_NAME);
         return intent;
     }
 
@@ -160,4 +173,6 @@ public class MainActivity extends AppCompatActivity {
         startActivity(InitialPageActivity.initialPageIntentFactory(getApplicationContext()));
 
     }
+
+
 }

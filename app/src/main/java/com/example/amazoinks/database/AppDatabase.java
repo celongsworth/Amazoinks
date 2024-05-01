@@ -13,6 +13,8 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.example.amazoinks.MainActivity;
 //import com.example.amazoinks.database.entities.User;
+import com.example.amazoinks.database.entities.Product;
+import com.example.amazoinks.database.entities.CartItem;
 import com.example.amazoinks.database.entities.User;
 import com.example.amazoinks.database.typeConverters.LocalDateTypeConverter;
 
@@ -20,18 +22,23 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 @TypeConverters(LocalDateTypeConverter.class)
-@Database(entities = {User.class}, version = 1, exportSchema = false)
+@Database(entities = {User.class, Product.class, CartItem.class}, version = 6, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
     public static final String USER_TABLE = "usertable";
-    private static final String DATABASE_NAME = "AppDatabase";
+    public static final String SHOPPING_CART_TABLE = "shopping_cart";
+    public static final String PRODUCT_TABLE = "product";
+    public static final String DATABASE_NAME = "AppDatabase";
     private static volatile AppDatabase INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;
 
     static final ExecutorService databaseWriteExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
     static AppDatabase getDatabase(final Context context){
+        Log.i(MainActivity.TAG, "getDatabase called");
         if(INSTANCE == null){
+            Log.i(MainActivity.TAG, "INSTANCE equals null pt1");
             synchronized (AppDatabase.class){
                 if (INSTANCE == null){
+                    Log.i(MainActivity.TAG, "INSTANCE equals null pt2");
                     INSTANCE = Room.databaseBuilder(
                                     context.getApplicationContext(),
                                     AppDatabase.class,
@@ -41,7 +48,7 @@ public abstract class AppDatabase extends RoomDatabase {
                             .addCallback(addDefaultValues)
                             .build();
 
-
+                    INSTANCE.query("select 1", null);
                 }
             }
         }
@@ -51,6 +58,7 @@ public abstract class AppDatabase extends RoomDatabase {
     private static final RoomDatabase.Callback addDefaultValues = new RoomDatabase.Callback(){
         @Override
         public void onCreate(@NonNull SupportSQLiteDatabase db){
+            // change back to onCreate eventually, currently will wipe database if schema changes
             super.onCreate(db);
             Log.i(MainActivity.TAG, "DATABASE CREATED!");
             databaseWriteExecutor.execute(() -> {
@@ -67,5 +75,8 @@ public abstract class AppDatabase extends RoomDatabase {
     };
 
     public abstract UserDAO userDAO();
+
+    // public abstract CartDAO cartDAO();
+    // public abstract ProductDAO productDAO();
 }
 
