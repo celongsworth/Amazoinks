@@ -20,13 +20,12 @@
             android:exported="false" />
         <activity
             android:name=".activities.SignUpActivity"
-            android:name=".AdminUsersActivity"
             android:exported="false" />
         <activity
-            android:name=".AdminActivity"
+            android:name=".activities.AdminUsersActivity"
             android:exported="false" />
         <activity
-            android:name=".SignUpActivity"
+            android:name=".activities.AdminActivity"
             android:exported="false" />
         <activity
             android:name=".activities.InitialPageActivity"

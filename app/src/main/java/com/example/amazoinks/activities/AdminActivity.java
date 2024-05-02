@@ -1,57 +1,59 @@
-package com.example.amazoinks;
+package com.example.amazoinks.activities;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.method.ScrollingMovementMethod;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 
+import com.example.amazoinks.R;
 import com.example.amazoinks.database.AppRepository;
 import com.example.amazoinks.database.entities.User;
-import com.example.amazoinks.databinding.ActivityAdminUsersBinding;
+import com.example.amazoinks.databinding.ActivityAdminBinding;
 
-import java.util.List;
+public class AdminActivity extends AppCompatActivity {
 
-public class AdminUsersActivity extends AppCompatActivity {
+    public static final String TAG = "DTT_AMAZOINKS";
+    private static final String MAIN_ACTIVITY_USER_ID = "com.example.amazoinks.MAIN_ACTIVITY_USER_ID";
 
-    ActivityAdminUsersBinding binding;
 
+    ActivityAdminBinding binding;
+    User user;
     private AppRepository repository;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityAdminUsersBinding.inflate(getLayoutInflater());
+        binding = ActivityAdminBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         repository = AppRepository.getRepository(getApplication());
 
-        binding.usersDisplayTextView.setMovementMethod(new ScrollingMovementMethod());
-        listAllUsers();
+        binding.adminUsersMenuButton.setVisibility(View.VISIBLE);
 
-        binding.userDeletionButton.setOnClickListener(new View.OnClickListener() {
+        Intent intent = MainActivity.mainActivityIntentFactory(getApplicationContext(),  1);
+        //Toast.makeText(this, intent.toString(), Toast.LENGTH_LONG).show();
+        int userId = intent.getIntExtra(MAIN_ACTIVITY_USER_ID, 1);
+        LiveData<User> userData = repository.getUserByUserId(userId);
+        user = userData.getValue();
+
+
+        binding.adminUsersMenuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String username = binding.userDeletionInputEditText.getText().toString();
-                //Toast.makeText(AdminUsersActivity.this, username, Toast.LENGTH_SHORT).show();
-                deleteUser(username);
-                Toast.makeText(AdminUsersActivity.this, "Deleted " + username, Toast.LENGTH_SHORT).show();
-                listAllUsers();
+                Intent intent1 = AdminUsersActivity.adminUsersIntentFactory(getApplicationContext());
+                startActivity(intent1);
             }
         });
-
     }
 
-    static Intent adminUsersIntentFactory(Context context){
-        return new Intent(context, AdminUsersActivity.class);
+    static Intent adminIntentFactory(Context context){
+        return new Intent(context, AdminActivity.class);
     }
 
     @Override
@@ -80,20 +82,7 @@ public class AdminUsersActivity extends AppCompatActivity {
         return true;
     }
 
-    public void listAllUsers(){
-        LiveData<List<User>> usersObserver =  repository.getAllUsers();
-        usersObserver.observe(this, this::updateDisplay);
-    }
 
-    private void updateDisplay(List<User> users){
-        StringBuilder sb = new StringBuilder();
-        for(User user : users){
-            sb.append(user);
-        }
-        binding.usersDisplayTextView.setText(sb.toString());
-    }
 
-    private void deleteUser(String username){
-        repository.deleteUserByUsername(username);
-    }
+
 }
