@@ -5,7 +5,7 @@ import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 
-import com.example.amazoinks.MainActivity;
+import com.example.amazoinks.activities.MainActivity;
 import com.example.amazoinks.database.entities.User;
 
 import java.util.List;

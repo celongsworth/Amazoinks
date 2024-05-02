@@ -1,23 +1,18 @@
-package com.example.amazoinks;
+package com.example.amazoinks.activities;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
-import com.example.amazoinks.database.AppRepository;
 import com.example.amazoinks.databinding.ActivityItemBrowsingBinding;
 import com.example.amazoinks.databinding.ActivityLoginBinding;
 
 public class ItemBrowsingActivity extends AppCompatActivity {
     private ActivityItemBrowsingBinding binding;
-//    private int userID = getIntent().getIntExtra("userID", 0);
+    private int userID = getIntent().getIntExtra("USER_ID", 0);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,13 +34,15 @@ public class ItemBrowsingActivity extends AppCompatActivity {
         binding.backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = MainActivity.mainActivityIntentFactory(getApplicationContext(), userID);
-//                startActivity(intent);
+                Intent intent = MainActivity.mainActivityIntentFactory(getApplicationContext(), getIntent().getIntExtra("USER_ID", 0));
+                startActivity(intent);
             }
         });
     }
 
-    static Intent itemBrowsingIntentFactory(Context context){
-        return new Intent(context, ItemBrowsingActivity.class);
+    static Intent itemBrowsingIntentFactory(Context context, int userID){
+        Intent intent = new Intent(context, ItemBrowsingActivity.class);
+        intent.putExtra("USER_ID", userID);
+        return intent;
     }
 }

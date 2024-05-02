@@ -11,7 +11,7 @@ import androidx.room.TypeConverters;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 
-import com.example.amazoinks.MainActivity;
+import com.example.amazoinks.activities.MainActivity;
 //import com.example.amazoinks.database.entities.User;
 import com.example.amazoinks.database.entities.Product;
 import com.example.amazoinks.database.entities.CartItem;
@@ -32,7 +32,7 @@ public abstract class AppDatabase extends RoomDatabase {
     private static final int NUMBER_OF_THREADS = 4;
 
     static final ExecutorService databaseWriteExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
-    static AppDatabase getDatabase(final Context context){
+    public static AppDatabase getDatabase(final Context context){
         Log.i(MainActivity.TAG, "getDatabase called");
         if(INSTANCE == null){
             Log.i(MainActivity.TAG, "INSTANCE equals null pt1");
@@ -48,7 +48,7 @@ public abstract class AppDatabase extends RoomDatabase {
                             .addCallback(addDefaultValues)
                             .build();
 
-                    INSTANCE.query("select 1", null);
+//                    INSTANCE.query("select 1", null);
                 }
             }
         }
@@ -58,7 +58,6 @@ public abstract class AppDatabase extends RoomDatabase {
     private static final RoomDatabase.Callback addDefaultValues = new RoomDatabase.Callback(){
         @Override
         public void onCreate(@NonNull SupportSQLiteDatabase db){
-            // change back to onCreate eventually, currently will wipe database if schema changes
             super.onCreate(db);
             Log.i(MainActivity.TAG, "DATABASE CREATED!");
             databaseWriteExecutor.execute(() -> {
@@ -69,14 +68,24 @@ public abstract class AppDatabase extends RoomDatabase {
                 dao.insert(admin);
                 User testUser1 = new User("testuser1", "testuser1");
                 dao.insert(testUser1);
-                Log.i(MainActivity.TAG, "DATABASE Entries added!");
+                Log.i(MainActivity.TAG, "User DATABASE Entries added!");
+                // instantiate and insert predefined products
+                ProductDAO prodDAO = INSTANCE.productDAO();
+                Product shirt = new Product("Shirt","A fun colorful short sleeve t-shirt",
+                        1, 19.99, "Clothing");
+                Product pants = new Product("Pants","Horrendously ugly pants, but they fit",
+                        1, 26.99, "Clothing");
+                Product plate = new Product("Plate","A plate shaped like a tiger",
+                        1, 9.99, "Dishes");
+                prodDAO.insert(shirt, pants, plate);
+                Log.i(MainActivity.TAG, "Product DATABASE Entries added!");
             });
         }
     };
 
     public abstract UserDAO userDAO();
 
-    // public abstract CartDAO cartDAO();
-    // public abstract ProductDAO productDAO();
+     public abstract CartDAO cartDAO();
+     public abstract ProductDAO productDAO();
 }
 

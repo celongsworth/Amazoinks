@@ -12,12 +12,14 @@ import java.util.Objects;
 public class Product {
     @PrimaryKey(autoGenerate = true)
     private int id;
+    private String itemName;
     private String description;
     private int quantity;
     private double price;
     private String category;
 
-    public Product(String description, int quantity, double price, String category) {
+    public Product(String itemName, String description, int quantity, double price, String category) {
+        this.itemName = itemName;
         this.description = description;
         this.quantity = quantity;
         this.price = price;
@@ -43,6 +45,14 @@ public class Product {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getItemName() {
+        return itemName;
+    }
+
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
     }
 
     public String getDescription() {
