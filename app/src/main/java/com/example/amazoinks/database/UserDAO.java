@@ -25,6 +25,8 @@ public interface UserDAO {
     @Query("DELETE FROM " + AppDatabase.USER_TABLE)
     void deleteAll();
 
+    @Query("DELETE FROM " + AppDatabase.USER_TABLE + " WHERE username == :username")
+    void deleteUserByUsername(String username);
 
     @Query("SELECT * FROM " + AppDatabase.USER_TABLE + " WHERE username == :username")
     LiveData<User> getUserByUserName(String username);

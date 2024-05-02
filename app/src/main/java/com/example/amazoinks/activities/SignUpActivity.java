@@ -53,14 +53,13 @@ public class SignUpActivity extends AppCompatActivity {
                     return;
                 }
             }
-
             User newUser = new User(username, password);
             repository.insertUser(newUser);
             Toast.makeText(this, "New user added", Toast.LENGTH_SHORT).show();
             Intent intent = LoginActivity.loginIntentFactory(getApplicationContext());
             startActivity(intent);
-
         });
+
 
     }
 

@@ -48,7 +48,7 @@ public abstract class AppDatabase extends RoomDatabase {
                             .addCallback(addDefaultValues)
                             .build();
 
-//                    INSTANCE.query("select 1", null);
+
                 }
             }
         }
