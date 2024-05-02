@@ -1,4 +1,4 @@
-package com.example.amazoinks;
+package com.example.amazoinks.activities;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -16,8 +16,11 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 
+import com.example.amazoinks.R;
+import com.example.amazoinks.database.AppDatabase;
 import com.example.amazoinks.database.AppRepository;
 import com.example.amazoinks.database.entities.User;
+import com.example.amazoinks.databinding.ActivityLoginBinding;
 import com.example.amazoinks.databinding.ActivityMainBinding;
 
 
@@ -51,6 +54,16 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = InitialPageActivity.initialPageIntentFactory(getApplicationContext());
             startActivity(intent);
         }
+        binding.shopNowButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                Intent intent = ItemBrowsingActivity.itemBrowsingIntentFactory(getApplicationContext(), user.getId());
+                Intent intent = ShopItems.shopItemsIntentFactory(getApplicationContext());
+//                Bundle bundle = new Bundle();
+//                bundle.putInt("USER_ID", user.getId());
+                startActivity(intent);
+            }
+        });
 
 
 
@@ -86,7 +99,6 @@ public class MainActivity extends AppCompatActivity {
                     binding.adminButton.setVisibility(View.INVISIBLE);
                 }
                 invalidateOptionsMenu();
-
             } else {
                 logout();
             }
@@ -96,6 +108,9 @@ public class MainActivity extends AppCompatActivity {
     static Intent mainActivityIntentFactory(Context context, int userId){
         Intent intent = new Intent(context, MainActivity.class);
         intent.putExtra(MAIN_ACTIVITY_USER_ID, userId);
+
+        // the below line deletes the database in the case that it needs to be recreated locally
+//        context.deleteDatabase(AppDatabase.DATABASE_NAME);
         return intent;
     }
 
@@ -160,4 +175,6 @@ public class MainActivity extends AppCompatActivity {
         startActivity(InitialPageActivity.initialPageIntentFactory(getApplicationContext()));
 
     }
+
+
 }

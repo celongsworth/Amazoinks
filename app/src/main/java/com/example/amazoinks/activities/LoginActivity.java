@@ -1,4 +1,4 @@
-package com.example.amazoinks;
+package com.example.amazoinks.activities;
 
 import android.content.Context;
 import android.content.Intent;

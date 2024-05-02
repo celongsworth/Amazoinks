@@ -5,7 +5,8 @@ import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 
-import com.example.amazoinks.MainActivity;
+import com.example.amazoinks.activities.MainActivity;
+import com.example.amazoinks.database.entities.Product;
 import com.example.amazoinks.database.entities.User;
 
 import java.util.List;
@@ -16,11 +17,13 @@ import java.util.concurrent.Future;
 public class AppRepository {
 
     private final UserDAO userDAO;
+    private final ProductDAO productDAO;
 
     private static AppRepository repository;
     private AppRepository(Application application){
         AppDatabase db = AppDatabase.getDatabase(application);
         this.userDAO = db.userDAO();
+        this.productDAO = db.productDAO();
     }
 
     public static AppRepository getRepository(Application application){
@@ -47,6 +50,16 @@ public class AppRepository {
         AppDatabase.databaseWriteExecutor.execute(()-> {
             userDAO.insert(user);
         });
+    }
+
+    public void insertProduct(Product... product){
+        AppDatabase.databaseWriteExecutor.execute(()-> {
+            productDAO.insert(product);
+        });
+    }
+
+    public LiveData<List<Product>> getAllProducts() {
+        return productDAO.getAllProducts();
     }
 
     public void invokeDB(){
