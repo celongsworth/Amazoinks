@@ -72,11 +72,11 @@ public abstract class AppDatabase extends RoomDatabase {
                 // instantiate and insert predefined products
                 ProductDAO prodDAO = INSTANCE.productDAO();
                 Product shirt = new Product("Shirt","A fun colorful short sleeve t-shirt",
-                        1, 19.99, "Clothing");
+                        7, 19.99, "Clothing");
                 Product pants = new Product("Pants","Horrendously ugly pants, but they fit",
-                        1, 26.99, "Clothing");
+                        10, 26.99, "Clothing");
                 Product plate = new Product("Plate","A plate shaped like a tiger",
-                        1, 9.99, "Dishes");
+                        15, 9.99, "Dishes");
                 prodDAO.insert(shirt, pants, plate);
                 Log.i(MainActivity.TAG, "Product DATABASE Entries added!");
             });

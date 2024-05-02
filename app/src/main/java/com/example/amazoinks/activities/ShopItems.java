@@ -4,10 +4,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
@@ -15,7 +17,7 @@ import androidx.lifecycle.Observer;
 
 import com.example.amazoinks.R;
 import com.example.amazoinks.database.AppDatabase;
-import com.example.amazoinks.database.ProductDAO;
+import com.example.amazoinks.database.AppRepository;
 import com.example.amazoinks.database.entities.Product;
 import com.example.amazoinks.databinding.ActivityItemBrowsingBinding;
 import com.example.amazoinks.databinding.ActivityShopItemsBinding;
@@ -25,7 +27,7 @@ import java.util.List;
 public class ShopItems extends AppCompatActivity {
 
     private ActivityShopItemsBinding binding;
-    private ProductDAO productDAO;
+    private AppRepository repository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,23 +37,31 @@ public class ShopItems extends AppCompatActivity {
         this.binding = ActivityShopItemsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        repository = AppRepository.getRepository(getApplication());
         AppDatabase appDatabase = AppDatabase.getDatabase(this);
-        productDAO = appDatabase.productDAO();
 
-        LiveData<List<Product>> productList = productDAO.getAllProducts();
-        productDAO.getAllProducts().observe(this, new Observer<List<Product>>() {
-            @Override
-            public void onChanged(List<Product> products) {
-                if (products != null && !products.isEmpty()) {
-                    addTableRow(products);
+
+        /*
+        LiveData<List<User>> usersObserver = repository.getAllUsers();
+        usersObserver.observe(this, users -> {
+            for (User user : users){
+                if(username.equals(user.getUsername())){
+                    Toast.makeText(this, "Username already taken! Choose Again.", Toast.LENGTH_SHORT).show();
+                    return;
                 }
+            }
+         */
+        LiveData<List<Product>> productListObserver = repository.getAllProducts();
+        productListObserver.observe(this, products -> {
+            if (products != null && !products.isEmpty()) {
+                Toast.makeText(this, products.toString(), Toast.LENGTH_LONG).show();
+                addTableRows(products);
             }
         });
 //        addTableRow();
-
     }
 
-    public void addTableRow(List<Product> products) {
+    public void addTableRows(List<Product> products) {
         TableLayout stk = (TableLayout) findViewById(R.id.mainTable);
         TableRow tableRow = new TableRow(this);
 
@@ -85,32 +95,35 @@ public class ShopItems extends AppCompatActivity {
         stk.addView(tableRow);
 
         for (Product product : products) {
+
             String item = product.getItemName();
-            if (item == null) {
-                item = "Item Error";
-            }
+            Log.i(MainActivity.TAG, item);
             double price = product.getPrice();
+            Log.i(MainActivity.TAG, String.valueOf(price));
+
             int quantity = product.getQuantity();
+            Log.i(MainActivity.TAG, String.valueOf(quantity));
+
             TableRow tbrow = new TableRow(this);
             TextView itemName = new TextView(this);
-//            itemName.setText(item);
-            itemName.setText("ITEM");
+            itemName.setText(item);
+//            itemName.setText("ITEM");
             itemName.setTextColor(Color.BLACK);
             itemName.setGravity(Gravity.CENTER);
             itemName.setTextSize(20);
             tbrow.addView(itemName);
 
             TextView priceText = new TextView(this);
-//            priceText.setText(String.valueOf(price));
-            priceText.setText("$100");
+            priceText.setText(String.valueOf(price));
+//            priceText.setText("$100");
             priceText.setTextColor(Color.BLACK);
             priceText.setGravity(Gravity.CENTER);
             priceText.setTextSize(20);
             tbrow.addView(priceText);
 
             TextView quantityText = new TextView(this);
-//            quantityText.setText(quantity);
-            quantityText.setText("15");
+            quantityText.setText(String.valueOf(quantity));
+//            quantityText.setText("15");
             quantityText.setTextColor(Color.BLACK);
             quantityText.setGravity(Gravity.CENTER);
             quantityText.setTextSize(20);
