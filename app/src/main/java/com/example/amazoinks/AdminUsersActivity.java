@@ -7,6 +7,8 @@ import android.text.method.ScrollingMovementMethod;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,6 +36,17 @@ public class AdminUsersActivity extends AppCompatActivity {
 
         binding.usersDisplayTextView.setMovementMethod(new ScrollingMovementMethod());
         listAllUsers();
+
+        binding.userDeletionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String username = binding.userDeletionInputEditText.getText().toString();
+                //Toast.makeText(AdminUsersActivity.this, username, Toast.LENGTH_SHORT).show();
+                deleteUser(username);
+                Toast.makeText(AdminUsersActivity.this, "Deleted " + username, Toast.LENGTH_SHORT).show();
+                listAllUsers();
+            }
+        });
 
     }
 
@@ -78,5 +91,9 @@ public class AdminUsersActivity extends AppCompatActivity {
             sb.append(user);
         }
         binding.usersDisplayTextView.setText(sb.toString());
+    }
+
+    private void deleteUser(String username){
+        repository.deleteUserByUsername(username);
     }
 }

@@ -57,6 +57,19 @@ public class AppRepository {
         return userDAO.getUserByUserName(username);
     }
 
+    public void deleteUser(User user){
+        //userDAO.deleteUserByUsername(username);
+        AppDatabase.databaseWriteExecutor.execute(()-> {
+            userDAO.delete(user);
+        });
+    }
+
+    public void deleteUserByUsername(String username){
+        AppDatabase.databaseWriteExecutor.execute(()->{
+            userDAO.deleteUserByUsername(username);
+        });
+    }
+
     public LiveData<List<User>> getAllUsers(){
         return userDAO.getAllUsers();
     }

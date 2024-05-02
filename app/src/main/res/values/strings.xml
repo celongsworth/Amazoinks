@@ -17,4 +17,8 @@
     <string name="orders_menu">Orders Menu</string>
     <string name="users_menu">Users Menu</string>
     <string name="amazoinks_admin_menu">Amazoinks Admin Menu</string>
+    <string name="enter_a_username">Enter a username</string>
+    <string name="delete_a_user">Delete a User</string>
+    <string name="delete_user">Delete User</string>
+    <string name="delete_user_button">Delete User</string>
 </resources>
