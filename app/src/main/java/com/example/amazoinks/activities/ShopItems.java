@@ -31,6 +31,7 @@ public class ShopItems extends AppCompatActivity {
     private ActivityShopItemsBinding binding;
     private AppRepository repository;
 
+    int userId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,17 +43,6 @@ public class ShopItems extends AppCompatActivity {
         repository = AppRepository.getRepository(getApplication());
         AppDatabase appDatabase = AppDatabase.getDatabase(this);
 
-
-        /*
-        LiveData<List<User>> usersObserver = repository.getAllUsers();
-        usersObserver.observe(this, users -> {
-            for (User user : users){
-                if(username.equals(user.getUsername())){
-                    Toast.makeText(this, "Username already taken! Choose Again.", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-            }
-         */
         LiveData<List<Product>> productListObserver = repository.getAllProducts();
         productListObserver.observe(this, products -> {
             if (products != null && !products.isEmpty()) {
@@ -60,7 +50,9 @@ public class ShopItems extends AppCompatActivity {
                 addTableRows(products);
             }
         });
-//        addTableRow();
+
+        userId = getIntent().getIntExtra("userId", -1);
+        Toast.makeText(this, "userId: "+userId, Toast.LENGTH_LONG).show();
     }
 
     public void addTableRows(List<Product> products) {
@@ -141,8 +133,10 @@ public class ShopItems extends AppCompatActivity {
         }
     }
 
-    static Intent shopItemsIntentFactory(Context context) {
-        return new Intent(context, ShopItems.class);
+    static Intent shopItemsIntentFactory(Context context, int loggedInUserId) {
+        Intent intent = new Intent(context,  ShopItems.class);
+        intent.putExtra("userId", loggedInUserId);
+        return intent;
     }
 
     @Override

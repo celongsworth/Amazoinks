@@ -36,16 +36,6 @@ public class AdminInventoryActivity extends AppCompatActivity {
         binding.itemsDisplayTextView.setMovementMethod(new ScrollingMovementMethod());
         listAllProducts();
 
-        /* binding.userDeletionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String username = binding.userDeletionInputEditText.getText().toString();
-                //Toast.makeText(AdminUsersActivity.this, username, Toast.LENGTH_SHORT).show();
-                deleteUser(username);
-                Toast.makeText(AdminUsersActivity.this, "Deleted " + username, Toast.LENGTH_SHORT).show();
-                listAllUsers();
-            }
-        }); */
         binding.addInventoryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,6 +48,11 @@ public class AdminInventoryActivity extends AppCompatActivity {
                 Product product = new Product(name, description, quantity, price, category);
                 repository.insertProduct(product);
                 listAllProducts();
+                binding.inventoryNameInputEditText.setText("");
+                binding.inventoryDescriptionInputEditText.setText("");
+                binding.inventoryPriceInputEditText.setText("");
+                binding.inventoryQuantityInputEditText.setText("");
+                binding.inventoryCategoryInputEditText.setText("");
             }
         });
 
