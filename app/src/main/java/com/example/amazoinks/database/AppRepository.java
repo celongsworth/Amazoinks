@@ -6,6 +6,7 @@ import android.util.Log;
 import androidx.lifecycle.LiveData;
 
 import com.example.amazoinks.activities.MainActivity;
+import com.example.amazoinks.database.entities.CartItem;
 import com.example.amazoinks.database.entities.Product;
 import com.example.amazoinks.database.entities.User;
 
@@ -18,12 +19,14 @@ public class AppRepository {
 
     private final UserDAO userDAO;
     private final ProductDAO productDAO;
+    private final CartDAO cartDAO;
 
     private static AppRepository repository;
-    private AppRepository(Application application){
+    public AppRepository(Application application){
         AppDatabase db = AppDatabase.getDatabase(application);
         this.userDAO = db.userDAO();
         this.productDAO = db.productDAO();
+        this.cartDAO = db.cartDAO();
     }
 
     public static AppRepository getRepository(Application application){
@@ -50,16 +53,6 @@ public class AppRepository {
         AppDatabase.databaseWriteExecutor.execute(()-> {
             userDAO.insert(user);
         });
-    }
-
-    public void insertProduct(Product... product){
-        AppDatabase.databaseWriteExecutor.execute(()-> {
-            productDAO.insert(product);
-        });
-    }
-
-    public LiveData<List<Product>> getAllProducts() {
-        return productDAO.getAllProducts();
     }
 
     public void invokeDB(){
@@ -90,4 +83,28 @@ public class AppRepository {
     public LiveData<User> getUserByUserId(int userId) {
         return userDAO.getUserByUserId(userId);
     }
+
+
+    public void insertProduct(Product... product){
+        AppDatabase.databaseWriteExecutor.execute(()-> {
+            productDAO.insert(product);
+        });
+    }
+
+    public LiveData<List<Product>> getAllProducts() {
+        return productDAO.getAllProducts();
+    }
+
+    public LiveData<List<CartItem>> getCartItemsForUser(int userID) {
+        return cartDAO.getCartItemsForUser(userID);
+    }
+
+    public LiveData<Product> getProductByID(int productID) {
+        return productDAO.getProductByID(productID);
+    }
+
+    public LiveData<List<CartItem>> getAllCartItems() {
+        return cartDAO.getAllCartItems();
+    }
+
 }
