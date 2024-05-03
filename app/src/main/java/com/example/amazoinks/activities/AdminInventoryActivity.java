@@ -58,8 +58,10 @@ public class AdminInventoryActivity extends AppCompatActivity {
 
     }
 
-    static Intent adminInventoryIntentFactory(Context context){
-        return new Intent(context, AdminInventoryActivity.class);
+    static Intent adminInventoryIntentFactory(Context context, int userId){
+        Intent intent = new Intent(context, AdminInventoryActivity.class);
+        intent.putExtra("USER_ID", userId);
+        return intent;
     }
 
     @Override

@@ -22,7 +22,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 @TypeConverters(LocalDateTypeConverter.class)
-@Database(entities = {User.class, Product.class, CartItem.class}, version = 6, exportSchema = false)
+@Database(entities = {User.class, Product.class, CartItem.class}, version = 7, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
     public static final String USER_TABLE = "usertable";
     public static final String SHOPPING_CART_TABLE = "shopping_cart";

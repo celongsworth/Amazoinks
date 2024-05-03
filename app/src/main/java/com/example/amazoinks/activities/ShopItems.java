@@ -46,7 +46,7 @@ public class ShopItems extends AppCompatActivity {
         LiveData<List<Product>> productListObserver = repository.getAllProducts();
         productListObserver.observe(this, products -> {
             if (products != null && !products.isEmpty()) {
-                Toast.makeText(this, products.toString(), Toast.LENGTH_LONG).show();
+//                Toast.makeText(this, products.toString(), Toast.LENGTH_LONG).show();
                 addTableRows(products);
             }
         });
@@ -156,8 +156,7 @@ public class ShopItems extends AppCompatActivity {
         item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(@NonNull MenuItem item) {
-
-                Intent intent =  MainActivity.mainActivityIntentFactory(getApplicationContext(), 1);
+                Intent intent =  MainActivity.mainActivityIntentFactory(getApplicationContext(), userId);
                 startActivity(intent);
                 return false;
             }
