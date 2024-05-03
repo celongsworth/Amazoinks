@@ -51,7 +51,7 @@ public class AdminUsersActivity extends AppCompatActivity {
 
     }
 
-    static Intent adminUsersIntentFactory(Context context){
+    static Intent adminUsersIntentFactory(Context context, int userId){
         return new Intent(context, AdminUsersActivity.class);
     }
 

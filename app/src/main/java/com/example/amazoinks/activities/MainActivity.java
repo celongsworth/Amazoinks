@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 
 import com.example.amazoinks.R;
+import com.example.amazoinks.database.AppDatabase;
 import com.example.amazoinks.database.AppRepository;
 import com.example.amazoinks.database.entities.User;
 import com.example.amazoinks.databinding.ActivityMainBinding;
@@ -53,10 +54,15 @@ public class MainActivity extends AppCompatActivity {
         binding.shopNowButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = ItemBrowsingActivity.itemBrowsingIntentFactory(getApplicationContext(), user.getId());
                 Intent intent = ShopItems.shopItemsIntentFactory(getApplicationContext(), loggedInUserId);
-//                Bundle bundle = new Bundle();
-//                bundle.putInt("USER_ID", user.getId());
+                startActivity(intent);
+            }
+        });
+
+        binding.viewCartButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = ShoppingCartActivity.shoppingCartIntentFactory(getApplicationContext(), loggedInUserId);
                 startActivity(intent);
             }
         });
@@ -64,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         binding.adminMenuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = AdminActivity.adminIntentFactory(getApplicationContext());
+                Intent intent = AdminActivity.adminIntentFactory(getApplicationContext(), loggedInUserId);
                 startActivity(intent);
             }
         });

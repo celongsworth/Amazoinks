@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,6 +27,7 @@ public class AdminActivity extends AppCompatActivity {
     ActivityAdminBinding binding;
     User user;
     private AppRepository repository;
+    private int userId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,11 +44,13 @@ public class AdminActivity extends AppCompatActivity {
         LiveData<User> userData = repository.getUserByUserId(userId);
         user = userData.getValue();
 
+        this.userId = getIntent().getIntExtra("userId", -1);
+        Toast.makeText(this, "userId: "+userId, Toast.LENGTH_LONG).show();
 
         binding.adminUsersMenuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 = AdminUsersActivity.adminUsersIntentFactory(getApplicationContext());
+                Intent intent1 = AdminUsersActivity.adminUsersIntentFactory(getApplicationContext(), userId);
                 startActivity(intent1);
             }
         });
@@ -54,14 +58,16 @@ public class AdminActivity extends AppCompatActivity {
         binding.inventoryMenuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent2 = AdminInventoryActivity.adminInventoryIntentFactory(getApplicationContext());
+                Intent intent2 = AdminInventoryActivity.adminInventoryIntentFactory(getApplicationContext(), userId);
                 startActivity(intent2);
             }
         });
     }
 
-    static Intent adminIntentFactory(Context context){
-        return new Intent(context, AdminActivity.class);
+    static Intent adminIntentFactory(Context context, int userId){
+        Intent intent = new Intent(context, AdminActivity.class);
+        intent.putExtra("USER_ID", userId);
+        return intent;
     }
 
     @Override
@@ -81,8 +87,7 @@ public class AdminActivity extends AppCompatActivity {
         item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(@NonNull MenuItem item) {
-
-                Intent intent =  MainActivity.mainActivityIntentFactory(getApplicationContext(), 1);
+                Intent intent =  MainActivity.mainActivityIntentFactory(getApplicationContext(), userId);
                 startActivity(intent);
                 return false;
             }
