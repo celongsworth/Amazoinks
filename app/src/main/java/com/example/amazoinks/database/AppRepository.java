@@ -84,6 +84,9 @@ public class AppRepository {
         return userDAO.getUserByUserId(userId);
     }
 
+    public LiveData<Product> getItemByItemName(String itemName) {
+        return productDAO.getItemByName(itemName);
+    }
 
     public void insertProduct(Product... product){
         AppDatabase.databaseWriteExecutor.execute(()-> {
@@ -105,6 +108,12 @@ public class AppRepository {
 
     public LiveData<List<CartItem>> getAllCartItems() {
         return cartDAO.getAllCartItems();
+    }
+
+    public void insertCartItem(CartItem... cartItem){
+        AppDatabase.databaseWriteExecutor.execute(()-> {
+            cartDAO.insert(cartItem);
+        });
     }
 
 }

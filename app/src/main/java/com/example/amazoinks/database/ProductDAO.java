@@ -22,8 +22,11 @@ public interface ProductDAO {
     @Query("Select * from " + AppDatabase.PRODUCT_TABLE)
     LiveData<List<Product>> getAllProducts();
 
-    @Query("Select * from " + AppDatabase.PRODUCT_TABLE + " where id = :productID")
+    @Query("Select * from " + AppDatabase.PRODUCT_TABLE + " where id == :productID")
     LiveData<Product> getProductByID(int productID);
+
+    @Query("Select * from " + AppDatabase.PRODUCT_TABLE + " where itemName == :itemName")
+    LiveData<Product> getItemByName(String itemName);
 
 
 

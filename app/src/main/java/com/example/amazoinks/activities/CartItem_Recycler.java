@@ -64,13 +64,10 @@ class CartItem_Recycler extends RecyclerView.Adapter<CartItem_Recycler.MyViewHol
         TextView name, price, quantity;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-
             imageView = itemView.findViewById(R.id.imageView);
             name = itemView.findViewById(R.id.itemName);
             price = itemView.findViewById(R.id.itemPrice);
             quantity = itemView.findViewById(R.id.itemQuantity);
-
-
         }
     }
 }
