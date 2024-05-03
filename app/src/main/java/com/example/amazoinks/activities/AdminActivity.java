@@ -50,6 +50,14 @@ public class AdminActivity extends AppCompatActivity {
                 startActivity(intent1);
             }
         });
+
+        binding.inventoryMenuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent2 = AdminInventoryActivity.adminInventoryIntentFactory(getApplicationContext());
+                startActivity(intent2);
+            }
+        });
     }
 
     static Intent adminIntentFactory(Context context){

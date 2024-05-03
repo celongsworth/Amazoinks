@@ -6,20 +6,22 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.Observer;
 
 import com.example.amazoinks.R;
 import com.example.amazoinks.database.AppDatabase;
 import com.example.amazoinks.database.AppRepository;
 import com.example.amazoinks.database.entities.Product;
-import com.example.amazoinks.databinding.ActivityItemBrowsingBinding;
 import com.example.amazoinks.databinding.ActivityShopItemsBinding;
 
 import java.util.List;
@@ -141,5 +143,31 @@ public class ShopItems extends AppCompatActivity {
 
     static Intent shopItemsIntentFactory(Context context) {
         return new Intent(context, ShopItems.class);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.logout_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        MenuItem item = menu.findItem(R.id.logoutMenuItem);
+        item.setVisible(true);
+
+        item.setTitle("HOME");
+
+        item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(@NonNull MenuItem item) {
+
+                Intent intent =  MainActivity.mainActivityIntentFactory(getApplicationContext(), 1);
+                startActivity(intent);
+                return false;
+            }
+        });
+        return true;
     }
 }
