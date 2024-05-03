@@ -8,32 +8,49 @@
     android:background="#ffffff"
     android:orientation="vertical"
     tools:context=".activities.ShopItems">
-    
+
+    <View
+        android:layout_width="50dp"
+        android:layout_height="50dp">
+    </View>
+    <EditText
+        android:id="@+id/chooseItemEditText"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:hint="@string/choose_item"
+        android:layout_gravity="center">
+    </EditText>
+    <Button
+        android:id="@+id/addItemButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:text="@string/add">
+    </Button>
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:background="#ffffff">        
-        
+        android:layout_height="600dp"
+        android:background="#ffffff">
+
         <HorizontalScrollView
+            android:id="@+id/horizontalScroll"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/horizontalScroll">
-            
+            android:layout_height="wrap_content">
+
             <RelativeLayout
+                android:id="@+id/RelativeLayout"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_gravity="center"
-                android:orientation="vertical"
-                android:id="@+id/RelativeLayout">
+                android:orientation="vertical">
 
                 <TableLayout
+                    android:id="@+id/mainTable"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    android:id="@+id/mainTable"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="60dp">
-                </TableLayout>
+                    android:layout_marginTop="60dp"></TableLayout>
             </RelativeLayout>
         </HorizontalScrollView>
     </ScrollView>

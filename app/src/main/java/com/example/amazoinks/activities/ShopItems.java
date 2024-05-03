@@ -9,6 +9,7 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -16,12 +17,15 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.LiveData;
 
 import com.example.amazoinks.R;
 import com.example.amazoinks.database.AppDatabase;
 import com.example.amazoinks.database.AppRepository;
+import com.example.amazoinks.database.entities.CartItem;
 import com.example.amazoinks.database.entities.Product;
+import com.example.amazoinks.database.entities.User;
 import com.example.amazoinks.databinding.ActivityShopItemsBinding;
 
 import java.util.List;
@@ -53,6 +57,24 @@ public class ShopItems extends AppCompatActivity {
 
         userId = getIntent().getIntExtra("userId", -1);
         Toast.makeText(this, "userId: "+userId, Toast.LENGTH_LONG).show();
+
+        binding.addItemButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String itemName = binding.chooseItemEditText.getText().toString();
+                LiveData<Product> productObserver = repository.getItemByItemName(itemName);
+                productObserver.observe(ShopItems.this, product -> {
+                    if (product != null) {
+                        CartItem newItem = new CartItem(userId, product.getId(), 1);
+                        repository.insertCartItem(newItem);
+                        Toast.makeText(ShopItems.this, "Item Added!", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(ShopItems.this, "No such item!", Toast.LENGTH_SHORT).show();
+                    }
+                    binding.chooseItemEditText.setText("");
+                });
+            }
+        });
     }
 
     public void addTableRows(List<Product> products) {

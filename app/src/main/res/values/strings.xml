@@ -37,4 +37,6 @@
     <string name="enter_a_category_admin">Enter a Category</string>
     <string name="add_item_to_inventory_admin">Add Item to Inventory</string>
     <string name="itemCount">TextView</string>
+    <string name="choose_item">Choose item</string>
+    <string name="add">+</string>
 </resources>
