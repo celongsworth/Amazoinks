@@ -25,4 +25,15 @@
     <string name="delete_a_user">Delete a User</string>
     <string name="delete_user">Delete User</string>
     <string name="delete_user_button">Delete User</string>
+    <string name="item_name_admin">Item Name</string>
+    <string name="enter_a_product_name_admin">Enter a Product Name</string>
+    <string name="enter_product_description_admin">Enter Product Description</string>
+    <string name="price_admin">Price</string>
+    <string name="enter_a_price">Enter a Price</string>
+    <string name="quantity_admin">Quantity</string>
+    <string name="description_admin">Description</string>
+    <string name="enter_a_quantity_admin">Enter a Quantity</string>
+    <string name="category_admin">Category</string>
+    <string name="enter_a_category_admin">Enter a Category</string>
+    <string name="add_item_to_inventory_admin">Add Item to Inventory</string>
 </resources>

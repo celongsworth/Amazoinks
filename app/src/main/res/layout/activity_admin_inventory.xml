@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.AdminInventoryActivity">
+
+    <TextView
+        android:id="@+id/itemsDisplayTextView"
+        android:layout_width="390dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="16dp"
+        android:padding="8dp"
+        android:text="Hello World!"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/inventoryNameLabelTextView"
+        android:layout_width="100dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/item_name_admin"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/itemsDisplayTextView" />
+
+    <EditText
+        android:id="@+id/inventoryNameInputEditText"
+        android:layout_width="270dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="8dp"
+        android:hint="@string/enter_a_product_name_admin"
+        android:inputType="textAutoComplete"
+        android:padding="8dp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/inventoryNameLabelTextView"
+        app:layout_constraintStart_toEndOf="@+id/inventoryNameLabelTextView" />
+
+    <TextView
+        android:id="@+id/inventoryDescriptionTextView"
+        android:layout_width="100dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/description_admin"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inventoryNameLabelTextView" />
+
+    <EditText
+        android:id="@+id/inventoryDescriptionInputEditText"
+        android:layout_width="270dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="8dp"
+        android:hint="@string/enter_product_description_admin"
+        android:inputType="textAutoComplete"
+        android:padding="8dp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/inventoryDescriptionTextView"
+        app:layout_constraintStart_toEndOf="@+id/inventoryDescriptionTextView"
+         />
+
+    <TextView
+        android:id="@+id/inventoryPriceLabelTextView"
+        android:layout_width="100dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/price_admin"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inventoryDescriptionTextView" />
+
+    <EditText
+        android:id="@+id/inventoryPriceInputEditText"
+        android:layout_width="270dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="8dp"
+        android:hint="@string/enter_a_price"
+        android:inputType="numberDecimal|number"
+        android:padding="8dp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/inventoryPriceLabelTextView"
+        app:layout_constraintStart_toEndOf="@+id/inventoryPriceLabelTextView"
+         />
+    <TextView
+        android:id="@+id/inventoryQuantityTextView"
+        android:layout_width="100dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/quantity_admin"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inventoryPriceLabelTextView" />
+
+    <EditText
+        android:id="@+id/inventoryQuantityInputEditText"
+        android:layout_width="270dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="8dp"
+        android:hint="@string/enter_a_quantity_admin"
+        android:inputType="number"
+        android:padding="8dp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/inventoryQuantityTextView"
+        app:layout_constraintStart_toEndOf="@+id/inventoryQuantityTextView"
+         />
+
+    <TextView
+        android:id="@+id/inventoryCategoryLabelTextView"
+        android:layout_width="100dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/category_admin"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inventoryQuantityInputEditText" />
+
+    <EditText
+        android:id="@+id/inventoryCategoryInputEditText"
+        android:layout_width="270dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="8dp"
+        android:hint="@string/enter_a_category_admin"
+        android:inputType="textAutoComplete"
+        android:padding="8dp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/inventoryCategoryLabelTextView"
+        app:layout_constraintStart_toEndOf="@+id/inventoryCategoryLabelTextView"
+         />
+    <Button
+        android:layout_width="390dp"
+        android:layout_height="125dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/inventoryCategoryLabelTextView"
+        android:layout_marginTop="16dp"
+        android:text="@string/add_item_to_inventory_admin"
+        android:textSize="36sp"
+        android:id="@+id/addInventoryButton"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
