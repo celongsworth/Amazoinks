@@ -40,17 +40,6 @@ public class ShopItems extends AppCompatActivity {
         repository = AppRepository.getRepository(getApplication());
         AppDatabase appDatabase = AppDatabase.getDatabase(this);
 
-
-        /*
-        LiveData<List<User>> usersObserver = repository.getAllUsers();
-        usersObserver.observe(this, users -> {
-            for (User user : users){
-                if(username.equals(user.getUsername())){
-                    Toast.makeText(this, "Username already taken! Choose Again.", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-            }
-         */
         LiveData<List<Product>> productListObserver = repository.getAllProducts();
         productListObserver.observe(this, products -> {
             if (products != null && !products.isEmpty()) {

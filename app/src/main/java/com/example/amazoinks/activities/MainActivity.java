@@ -63,6 +63,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        binding.viewCartButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = ShoppingCartActivity.shoppingCartIntentFactory(getApplicationContext(), user.getId());
+                startActivity(intent);
+            }
+        });
+
         binding.adminMenuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
