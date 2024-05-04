@@ -18,6 +18,7 @@ import com.example.amazoinks.R;
 import com.example.amazoinks.database.AppDatabase;
 import com.example.amazoinks.database.AppRepository;
 import com.example.amazoinks.database.entities.CartItem;
+import com.example.amazoinks.database.entities.CartViewItem;
 
 import java.util.List;
 
@@ -35,7 +36,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
         repository = AppRepository.getRepository(getApplication());
         AppDatabase appDatabase = AppDatabase.getDatabase(this);
 
-        LiveData<List<CartItem>> cartItemListObserver = repository.getAllCartItems();
+        LiveData<List<CartViewItem>> cartItemListObserver = repository.getCartItemsForUser(userId);
         cartItemListObserver.observe(this, items -> {
             if (items != null && !items.isEmpty()) {
                 CartItem_Recycler adapter = new CartItem_Recycler(this, items, repository);

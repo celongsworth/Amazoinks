@@ -1,33 +1,28 @@
 package com.example.amazoinks.activities;
 
-import android.app.Application;
 import android.content.Context;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.LiveData;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.amazoinks.R;
-import com.example.amazoinks.database.AppDatabase;
 import com.example.amazoinks.database.AppRepository;
 import com.example.amazoinks.database.entities.CartItem;
+import com.example.amazoinks.database.entities.CartViewItem;
 import com.example.amazoinks.database.entities.Product;
-import com.example.amazoinks.databinding.ActivityShopItemsBinding;
 
 import java.util.List;
 
 class CartItem_Recycler extends RecyclerView.Adapter<CartItem_Recycler.MyViewHolder> {
     Context context;
-    List<CartItem> userCartItems;
+    List<CartViewItem> userCartItems;
     AppRepository repository;
-    public CartItem_Recycler(Context context, List<CartItem> userCartItems, AppRepository appRepository) {
+    public CartItem_Recycler(Context context, List<CartViewItem> userCartItems, AppRepository appRepository) {
         this.context = context;
         this.userCartItems = userCartItems;
         this.repository = appRepository;
@@ -42,16 +37,16 @@ class CartItem_Recycler extends RecyclerView.Adapter<CartItem_Recycler.MyViewHol
 
     @Override
     public void onBindViewHolder(@NonNull CartItem_Recycler.MyViewHolder holder, int position) {
-        Product product = repository.getProductByID(userCartItems.get(position).getItemID()).getValue();
-        if (product == null) {
+        CartViewItem item = userCartItems.get(position);
+        if (item == null) {
             holder.quantity.setText("NULL");
             holder.name.setText("NULL");
             holder.price.setText("NULL");
             return;
         }
-        holder.quantity.setText(String.valueOf(product.getQuantity()));
-        holder.name.setText(product.getItemName());
-        holder.price.setText(String.valueOf(product.getPrice()));
+        holder.quantity.setText(String.valueOf(item.getItemQuantity()));
+        holder.name.setText(item.getItemName());
+        holder.price.setText(String.valueOf(item.getPrice()));
     }
 
     @Override
