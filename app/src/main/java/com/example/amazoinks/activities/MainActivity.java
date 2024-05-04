@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -16,10 +17,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 
 import com.example.amazoinks.R;
-import com.example.amazoinks.database.AppDatabase;
 import com.example.amazoinks.database.AppRepository;
+import com.example.amazoinks.database.entities.CartViewItem;
 import com.example.amazoinks.database.entities.User;
 import com.example.amazoinks.databinding.ActivityMainBinding;
+
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -62,6 +65,14 @@ public class MainActivity extends AppCompatActivity {
         binding.viewCartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (loggedInUserId != -1){
+                    LiveData<List<CartViewItem>> cartItemsObserver = repository.getCartItemsForUser(loggedInUserId);
+                    cartItemsObserver.observe(MainActivity.this, cartViewItems -> {
+                        for(CartViewItem item : cartViewItems){
+                            Toast.makeText(MainActivity.this, item.toString(), Toast.LENGTH_LONG).show();
+                        }
+                    });
+                }
                 Intent intent = ShoppingCartActivity.shoppingCartIntentFactory(getApplicationContext(), loggedInUserId);
                 startActivity(intent);
             }

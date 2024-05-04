@@ -46,6 +46,7 @@ public class AdminUsersActivity extends AppCompatActivity {
                 deleteUser(username);
                 Toast.makeText(AdminUsersActivity.this, "Deleted " + username, Toast.LENGTH_SHORT).show();
                 listAllUsers();
+                binding.userDeletionInputEditText.setText("");
             }
         });
 

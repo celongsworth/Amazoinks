@@ -8,12 +8,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.LiveData;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,7 +18,6 @@ import com.example.amazoinks.R;
 import com.example.amazoinks.database.AppDatabase;
 import com.example.amazoinks.database.AppRepository;
 import com.example.amazoinks.database.entities.CartItem;
-import com.example.amazoinks.database.entities.Product;
 
 import java.util.List;
 
@@ -49,7 +44,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
             }
         });
 
-        userId = getIntent().getIntExtra("userId", -1);
+        userId = getIntent().getIntExtra("USER_ID", -1);
         Toast.makeText(this, "userId: " + userId, Toast.LENGTH_LONG).show();
     }
 

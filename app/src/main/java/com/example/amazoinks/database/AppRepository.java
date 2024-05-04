@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData;
 
 import com.example.amazoinks.activities.MainActivity;
 import com.example.amazoinks.database.entities.CartItem;
+import com.example.amazoinks.database.entities.CartViewItem;
 import com.example.amazoinks.database.entities.Product;
 import com.example.amazoinks.database.entities.User;
 
@@ -98,7 +99,7 @@ public class AppRepository {
         return productDAO.getAllProducts();
     }
 
-    public LiveData<List<CartItem>> getCartItemsForUser(int userID) {
+    public LiveData<List<CartViewItem>> getCartItemsForUser(int userID) {
         return cartDAO.getCartItemsForUser(userID);
     }
 

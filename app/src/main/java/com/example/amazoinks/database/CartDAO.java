@@ -7,6 +7,7 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
 import com.example.amazoinks.database.entities.CartItem;
+import com.example.amazoinks.database.entities.CartViewItem;
 
 import java.util.List;
 
@@ -18,10 +19,13 @@ public interface CartDAO {
     @Query("Select * from " + AppDatabase.SHOPPING_CART_TABLE)
     LiveData<List<CartItem>> getAllCartItems();
 
+    /*
     @Query("Select * from " + AppDatabase.SHOPPING_CART_TABLE + " where userID == :userID")
     LiveData<List<CartItem>> getCartItemsForUser(int userID);
     // should probably return map that holds product and product quantity
+    */
 
-
+    @Query("Select itemName, price, category, " + AppDatabase.SHOPPING_CART_TABLE + ".itemQuantity from " + AppDatabase.PRODUCT_TABLE + " inner join " + AppDatabase.SHOPPING_CART_TABLE + " on "+AppDatabase.PRODUCT_TABLE+".id = "+AppDatabase.SHOPPING_CART_TABLE+".itemID where "+AppDatabase.SHOPPING_CART_TABLE+".userID == :userID")
+    LiveData<List<CartViewItem>> getCartItemsForUser(int userID);
 
 }
