@@ -49,7 +49,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
             }
         });
 
-        userId = getIntent().getIntExtra("userId", -1);
+        userId = getIntent().getIntExtra("USER_ID", -1);
         Toast.makeText(this, "userId: " + userId, Toast.LENGTH_LONG).show();
     }
 
