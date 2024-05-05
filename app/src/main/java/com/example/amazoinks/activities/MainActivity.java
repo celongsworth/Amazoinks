@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 
 import com.example.amazoinks.R;
+import com.example.amazoinks.database.AppDatabase;
 import com.example.amazoinks.database.AppRepository;
 import com.example.amazoinks.database.entities.CartViewItem;
 import com.example.amazoinks.database.entities.User;
