@@ -28,10 +28,6 @@ public class ProductTest {
 
     @Before
     public void setUp() {
-        product = null;
-        product2 = null;
-        product3 = null;
-
         itemName = "Fish";
         description = "The goldest of fish";
         quantity = 5;
@@ -47,11 +43,6 @@ public class ProductTest {
         product = new Product(itemName, description, quantity, price, category);
         product2 = new Product(itemName2, description2, quantity2, price2, category2);
         product3 = new Product(itemName, description, quantity, price, category);
-    }
-
-    @Test
-    public void getId() {
-
     }
 
     @Test
