@@ -9,7 +9,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -69,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
                     LiveData<List<CartViewItem>> cartItemsObserver = repository.getCartItemsForUser(loggedInUserId);
                     cartItemsObserver.observe(MainActivity.this, cartViewItems -> {
                         for(CartViewItem item : cartViewItems){
-                            Toast.makeText(MainActivity.this, item.toString(), Toast.LENGTH_LONG).show();
+                            //Toast.makeText(MainActivity.this, item.toString(), Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
