@@ -34,16 +34,23 @@ android {
 
 dependencies {
 
+    def androidXTestVersion = "1.5.0"
+    
     implementation libs.appcompat
     implementation libs.material
     implementation libs.activity
     implementation libs.constraintlayout
-    implementation 'junit:junit:4.12'
+    testImplementation libs.junit.v412
     testImplementation libs.junit
     androidTestImplementation libs.ext.junit
+    androidTestImplementation libs.runner.v140
     androidTestImplementation libs.espresso.core
+    androidTestImplementation libs.junit.v113
+    androidTestImplementation "androidx.test:runner:$androidXTestVersion"
+    androidTestImplementation "androidx.test:rules:$androidXTestVersion"
 
     def room_version = "2.6.1"
+
 
     implementation libs.room.runtime
     annotationProcessor "androidx.room:room-compiler:$room_version"
