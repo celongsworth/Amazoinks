@@ -25,7 +25,7 @@ public interface CartDAO {
     // should probably return map that holds product and product quantity
     */
 
-    @Query("Select itemName, price, category, " + AppDatabase.SHOPPING_CART_TABLE + ".itemQuantity from " + AppDatabase.PRODUCT_TABLE + " inner join " + AppDatabase.SHOPPING_CART_TABLE + " on "+AppDatabase.PRODUCT_TABLE+".id = "+AppDatabase.SHOPPING_CART_TABLE+".itemID where "+AppDatabase.SHOPPING_CART_TABLE+".userID == :userID")
+    @Query("Select itemName, price, category, " + AppDatabase.SHOPPING_CART_TABLE+".itemQuantity from " + AppDatabase.PRODUCT_TABLE + " inner join " + AppDatabase.SHOPPING_CART_TABLE + " on "+AppDatabase.PRODUCT_TABLE+".id = "+AppDatabase.SHOPPING_CART_TABLE+".itemID where "+AppDatabase.SHOPPING_CART_TABLE+".userID == :userID")
     LiveData<List<CartViewItem>> getCartItemsForUser(int userID);
 
 }

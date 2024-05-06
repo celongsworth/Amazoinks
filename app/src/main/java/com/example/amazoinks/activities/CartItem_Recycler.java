@@ -39,12 +39,7 @@ class CartItem_Recycler extends RecyclerView.Adapter<CartItem_Recycler.MyViewHol
     public void onBindViewHolder(@NonNull CartItem_Recycler.MyViewHolder holder, int position) {
         CartViewItem product = userCartItems.get(position);
         Toast.makeText(context, product.toString(), Toast.LENGTH_SHORT).show();
-        if (product == null) {
-            holder.quantity.setText("NULL");
-            holder.name.setText("NULL");
-            holder.price.setText("NULL");
-            return;
-        }
+
         holder.quantity.setText(String.valueOf(product.getItemQuantity()));
         holder.name.setText(product.getItemName());
         holder.price.setText(String.valueOf(product.getPrice()));
