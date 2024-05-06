@@ -5,19 +5,35 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.InitialPageActivity">
+    tools:context=".activities.InitialPageActivity"
+    android:background="#d7eeff">
+
 
     <TextView
         android:id="@+id/appTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
         android:padding="36dp"
-        android:layout_marginTop="54dp"
         android:text="@string/amazoinks"
-        android:textSize="48sp"
+        android:textColor="#5e747f"
+        android:textSize="56sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:layout_width="317dp"
+        android:layout_height="185dp"
+        android:src="@drawable/van"
+        app:layout_constraintBottom_toTopOf="@+id/signInButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appTitle"
+        app:layout_constraintVertical_bias="0.0"
+        android:contentDescription="@string/scooby_doo_van_for_image" />
 
     <Button
         android:id="@+id/signInButton"
@@ -26,9 +42,11 @@
         android:layout_marginTop="216dp"
         android:text="@string/sign_in"
         android:textSize="36sp"
+        android:textColor="#0e1c36"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/appTitle" />
+        app:layout_constraintTop_toBottomOf="@id/appTitle"
+        android:background="#afcbff"/>
 
     <Button
         android:id="@+id/signUpButton"
@@ -37,8 +55,10 @@
         android:layout_marginTop="36dp"
         android:text="@string/sign_up"
         android:textSize="36sp"
+        android:textColor="#0e1c36"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/signInButton" />
+        app:layout_constraintTop_toBottomOf="@id/signInButton"
+        android:background="#afcbff"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

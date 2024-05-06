@@ -39,4 +39,7 @@
     <string name="itemCount">TextView</string>
     <string name="choose_item">Choose item</string>
     <string name="add">+</string>
+    <string name="scooby_doo_van_for_image">Scooby doo van for image</string>
+    <string name="image_with_the_gang">Image with the gang</string>
+    <string name="scooby_walking_around">Scooby walking around</string>
 </resources>

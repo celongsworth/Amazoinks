@@ -5,7 +5,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.MainActivity">
+    tools:context=".activities.MainActivity"
+    android:background="#D7EEFF">
 
     <TextView
         android:id="@+id/appTitle"
@@ -14,7 +15,8 @@
         android:padding="36dp"
         android:layout_marginTop="54dp"
         android:text="@string/amazoinks"
-        android:textSize="48sp"
+        android:textSize="56sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -24,39 +26,48 @@
         android:id="@+id/shopNowButton"
         android:layout_width="390dp"
         android:layout_height="125dp"
-        android:layout_marginTop="216dp"
+        android:layout_marginTop="40dp"
+        android:background="#AFCBFF"
         android:text="@string/shop_now"
         android:textSize="36sp"
+        android:textColor="#0e1c36"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.476"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/appTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/adminMenuButton" />
 
     <Button
         android:id="@+id/viewCartButton"
         android:layout_width="390dp"
         android:layout_height="125dp"
         android:layout_marginTop="36dp"
+        android:background="#AFCBFF"
         android:text="@string/view_cart"
         android:textSize="36sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/shopNowButton" />
-
-    <Button
-        android:layout_width="390dp"
-        android:layout_height="125dp"
-        android:text="@string/admin_menu"
-        android:textSize="36sp"
+        android:textColor="#0e1c36"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.523"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/shopNowButton"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/adminMenuButton"
+        android:layout_width="390dp"
+        android:layout_height="125dp"
+        android:background="#AFCBFF"
+        android:text="@string/admin_menu"
+        android:textColor="#0e1c36"
+        android:textSize="36sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.523"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appTitle"
-        app:layout_constraintVertical_bias="0.092"
-        android:id="@+id/adminMenuButton"
-        android:visibility="invisible"
-        tools:visibility="visible"
-        />
+        app:layout_constraintVertical_bias="0.12"
+        tools:visibility="visible" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
