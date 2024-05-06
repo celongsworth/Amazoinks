@@ -45,7 +45,7 @@ public class AdminActivity extends AppCompatActivity {
         user = userData.getValue();
 
         this.userId = getIntent().getIntExtra("userId", -1);
-        Toast.makeText(this, "userId: "+userId, Toast.LENGTH_LONG).show();
+//        Toast.makeText(this, "userId: "+userId, Toast.LENGTH_LONG).show();
 
         binding.adminUsersMenuButton.setOnClickListener(new View.OnClickListener() {
             @Override

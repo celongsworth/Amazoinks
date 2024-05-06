@@ -5,7 +5,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.AdminUsersActivity">
+    tools:context=".activities.AdminUsersActivity"
+    android:background="#d7eeff">
 
     <TextView
         android:id="@+id/usersDisplayTextView"
@@ -42,14 +43,15 @@
         app:layout_constraintStart_toEndOf="@+id/userDeletionLabelTextView" />
 
     <Button
+        android:id="@+id/userDeletionButton"
         android:layout_width="390dp"
         android:layout_height="125dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/userDeletionInputEditText"
         android:layout_marginTop="16dp"
         android:text="@string/delete_user_button"
         android:textSize="36sp"
-        android:id="@+id/userDeletionButton"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/userDeletionInputEditText"
+        android:background="#afcbff"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

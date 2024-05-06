@@ -56,7 +56,7 @@ public class ShopItems extends AppCompatActivity {
         });
 
         userId = getIntent().getIntExtra("userId", -1);
-        Toast.makeText(this, "userId: "+userId, Toast.LENGTH_LONG).show();
+//        Toast.makeText(this, "userId: "+userId, Toast.LENGTH_LONG).show();
 
         binding.addItemButton.setOnClickListener(new View.OnClickListener() {
             @Override

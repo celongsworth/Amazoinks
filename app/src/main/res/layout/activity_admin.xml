@@ -5,7 +5,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.AdminActivity">
+    tools:context=".activities.AdminActivity"
+    android:background="#d7eeff">
 
     <TextView
         android:id="@+id/adminAppTitle"
@@ -14,38 +15,45 @@
         android:padding="36dp"
         android:layout_marginTop="27dp"
         android:text="@string/amazoinks_admin_menu"
-        android:textSize="48sp"
+        android:textSize="56sp"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textColor="#5e747f"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <Button
+        android:id="@+id/adminUsersMenuButton"
         android:layout_width="390dp"
         android:layout_height="125dp"
+        android:background="#afcbff"
         android:text="@string/users_menu"
         android:textSize="36sp"
+        android:textColor="#0e1c36"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.523"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/adminAppTitle"
-        app:layout_constraintVertical_bias="0.092"
-        android:id="@+id/adminUsersMenuButton"
-        android:visibility="invisible"
-        tools:visibility="visible"
-        />
-
+        app:layout_constraintVertical_bias="0.06"
+        tools:visibility="visible" />
 
     <Button
         android:id="@+id/inventoryMenuButton"
         android:layout_width="390dp"
         android:layout_height="125dp"
-        android:layout_marginTop="216dp"
+        android:layout_marginTop="36dp"
+        android:background="#afcbff"
         android:text="@string/inventory_menu"
         android:textSize="36sp"
+        android:textColor="#0e1c36"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.476"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/adminAppTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/adminUsersMenuButton" />
 
     <Button
         android:id="@+id/ordersMenuButton"
@@ -54,9 +62,12 @@
         android:layout_marginTop="36dp"
         android:text="@string/orders_menu"
         android:textSize="36sp"
+        android:textColor="#0e1c36"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/inventoryMenuButton" />
+        app:layout_constraintTop_toBottomOf="@id/inventoryMenuButton"
+        android:background="#afcbff"
+        />
 
 
 

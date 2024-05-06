@@ -36,7 +36,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
         AppDatabase appDatabase = AppDatabase.getDatabase(this);
 
         userId = getIntent().getIntExtra("USER_ID", -1);
-        Toast.makeText(this, "userId: " + userId, Toast.LENGTH_LONG).show();
+//        Toast.makeText(this, "userId: " + userId, Toast.LENGTH_LONG).show();
 
         LiveData<List<CartViewItem>> cartItemListObserver = repository.getCartItemsForUser(userId);
         cartItemListObserver.observe(this, items -> {
@@ -44,10 +44,10 @@ public class ShoppingCartActivity extends AppCompatActivity {
                 CartItem_Recycler adapter = new CartItem_Recycler(this, items, repository);
                 recyclerView.setAdapter(adapter);
                 recyclerView.setLayoutManager(new LinearLayoutManager(this));
-                Toast.makeText(this, items.toString(), Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(this, "items is empty", Toast.LENGTH_SHORT).show();
-            }
+//                Toast.makeText(this, items.toString(), Toast.LENGTH_SHORT).show();
+            } //else {
+//                Toast.makeText(this, "items is empty", Toast.LENGTH_SHORT).show();
+//            }
         });
 
 

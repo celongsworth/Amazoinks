@@ -5,7 +5,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.AdminInventoryActivity">
+    tools:context=".activities.AdminInventoryActivity"
+    android:background="#d7eeff">
 
     <TextView
         android:id="@+id/itemsDisplayTextView"
@@ -131,15 +132,17 @@
         app:layout_constraintBaseline_toBaselineOf="@+id/inventoryCategoryLabelTextView"
         app:layout_constraintStart_toEndOf="@+id/inventoryCategoryLabelTextView"
          />
+
     <Button
+        android:id="@+id/addInventoryButton"
         android:layout_width="390dp"
         android:layout_height="125dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/inventoryCategoryLabelTextView"
         android:layout_marginTop="16dp"
+        android:background="#afcbff"
         android:text="@string/add_item_to_inventory_admin"
         android:textSize="36sp"
-        android:id="@+id/addInventoryButton"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/inventoryCategoryLabelTextView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

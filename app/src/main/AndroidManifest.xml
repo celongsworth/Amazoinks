@@ -22,9 +22,6 @@
             android:name=".activities.ShopItems"
             android:exported="false" />
         <activity
-            android:name=".activities.ItemBrowsingActivity"
-            android:exported="false" />
-        <activity
             android:name=".activities.SignUpActivity"
             android:exported="false" />
         <activity
