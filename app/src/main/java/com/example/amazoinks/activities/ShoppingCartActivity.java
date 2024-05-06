@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.amazoinks.R;
 import com.example.amazoinks.database.AppDatabase;
 import com.example.amazoinks.database.AppRepository;
-import com.example.amazoinks.database.entities.CartItem;
+import com.example.amazoinks.database.entities.CartViewItem;
 
 import java.util.List;
 
@@ -35,17 +35,22 @@ public class ShoppingCartActivity extends AppCompatActivity {
         repository = AppRepository.getRepository(getApplication());
         AppDatabase appDatabase = AppDatabase.getDatabase(this);
 
-        LiveData<List<CartItem>> cartItemListObserver = repository.getAllCartItems();
+        userId = getIntent().getIntExtra("USER_ID", -1);
+        Toast.makeText(this, "userId: " + userId, Toast.LENGTH_LONG).show();
+
+        LiveData<List<CartViewItem>> cartItemListObserver = repository.getCartItemsForUser(userId);
         cartItemListObserver.observe(this, items -> {
             if (items != null && !items.isEmpty()) {
                 CartItem_Recycler adapter = new CartItem_Recycler(this, items, repository);
                 recyclerView.setAdapter(adapter);
                 recyclerView.setLayoutManager(new LinearLayoutManager(this));
+                Toast.makeText(this, items.toString(), Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "items is empty", Toast.LENGTH_SHORT).show();
             }
         });
 
-        userId = getIntent().getIntExtra("USER_ID", -1);
-        Toast.makeText(this, "userId: " + userId, Toast.LENGTH_LONG).show();
+
     }
 
     static Intent shoppingCartIntentFactory(Context context, int userId){
@@ -71,9 +76,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
         item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(@NonNull MenuItem item) {
-                Toast.makeText(ShoppingCartActivity.this, userId, Toast.LENGTH_SHORT).show();
                 Intent intent =  MainActivity.mainActivityIntentFactory(getApplicationContext(), userId);
-                Toast.makeText(ShoppingCartActivity.this, userId, Toast.LENGTH_SHORT).show();
                 startActivity(intent);
                 return false;
             }

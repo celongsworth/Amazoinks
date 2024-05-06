@@ -1,8 +1,7 @@
 package com.example.amazoinks.activities;
 
-import android.app.Application;
 import android.content.Context;
-import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,23 +10,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.LiveData;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.amazoinks.R;
-import com.example.amazoinks.database.AppDatabase;
 import com.example.amazoinks.database.AppRepository;
-import com.example.amazoinks.database.entities.CartItem;
-import com.example.amazoinks.database.entities.Product;
-import com.example.amazoinks.databinding.ActivityShopItemsBinding;
+import com.example.amazoinks.database.entities.CartViewItem;
 
 import java.util.List;
 
 class CartItem_Recycler extends RecyclerView.Adapter<CartItem_Recycler.MyViewHolder> {
     Context context;
-    List<CartItem> userCartItems;
+    List<CartViewItem> userCartItems;
     AppRepository repository;
-    public CartItem_Recycler(Context context, List<CartItem> userCartItems, AppRepository appRepository) {
+    public CartItem_Recycler(Context context, List<CartViewItem> userCartItems, AppRepository appRepository) {
         this.context = context;
         this.userCartItems = userCartItems;
         this.repository = appRepository;
@@ -42,16 +37,18 @@ class CartItem_Recycler extends RecyclerView.Adapter<CartItem_Recycler.MyViewHol
 
     @Override
     public void onBindViewHolder(@NonNull CartItem_Recycler.MyViewHolder holder, int position) {
-        Product product = repository.getProductByID(userCartItems.get(position).getItemID()).getValue();
+        CartViewItem product = userCartItems.get(position);
+        Toast.makeText(context, product.toString(), Toast.LENGTH_SHORT).show();
         if (product == null) {
             holder.quantity.setText("NULL");
             holder.name.setText("NULL");
             holder.price.setText("NULL");
             return;
         }
-        holder.quantity.setText(String.valueOf(product.getQuantity()));
+        holder.quantity.setText(String.valueOf(product.getItemQuantity()));
         holder.name.setText(product.getItemName());
         holder.price.setText(String.valueOf(product.getPrice()));
+
     }
 
     @Override
@@ -68,6 +65,7 @@ class CartItem_Recycler extends RecyclerView.Adapter<CartItem_Recycler.MyViewHol
             name = itemView.findViewById(R.id.itemName);
             price = itemView.findViewById(R.id.itemPrice);
             quantity = itemView.findViewById(R.id.itemQuantity);
+            Log.i(MainActivity.TAG, "MyViewHolder is getting instantiated");
         }
     }
 }

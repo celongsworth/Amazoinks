@@ -43,7 +43,7 @@ public class CartViewItem {
     @NonNull
     @Override
     public String toString() {
-        return "CartViewItem{" +
+        return "{" +
                 "itemName='" + itemName + '\'' +
                 ", price=" + price +
                 ", category='" + category + '\'' +
